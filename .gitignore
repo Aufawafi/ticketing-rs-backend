@@ -1,0 +1,20 @@
+
+# dependencies
+/node_modules
+
+# config
+/config/serviceAccountKey.json
+
+# env
+.env
+
+# logs
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+
+# misc
+.DS_Store
