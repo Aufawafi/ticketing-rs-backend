@@ -8,7 +8,11 @@ connectDB();
 
 app.use(
   cors({
-    origin: ["http://192.168.100.9:3000", "http://localhost:3000"], // atau ganti dengan asal frontend, misal: "http://192.168.100.9:3000"
+    origin: [
+      "http://192.168.100.9:3000",
+      "http://localhost:3000",
+      "https://ticketing-rs-frontend.vercel.app",
+    ], // atau ganti dengan asal frontend, misal: "http://192.168.100.9:3000"
     credentials: true,
   })
 );
