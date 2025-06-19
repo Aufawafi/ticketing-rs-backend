@@ -47,7 +47,7 @@ router.put("/users/:uid/role", async (req, res) => {
     }
 
     // Update role
-    user.isAdmin = isAdmin;
+    user.role = isAdmin ? "admin" : "user";
     await user.save();
 
     res.json(user);
@@ -210,7 +210,7 @@ router.get("/resep", async (req, res) => {
       userMap[user._id.toString()] = user.email;
     });
 
-    // Gabungkan data resep dengan email user
+    // Gabungkan data resep
     const resepWithEmail = resep.map((r) => ({
       _id: r._id,
       namaObat: r.namaObat,
@@ -319,6 +319,20 @@ router.delete("/doctors/:id", async (req, res) => {
     res
       .status(400)
       .json({ message: "Gagal menghapus dokter", error: err.message });
+  }
+});
+
+// DELETE Booking
+router.delete("/bookings/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const booking = await Booking.findByIdAndDelete(id);
+    if (!booking) {
+      return res.status(404).json({ message: "Booking tidak ditemukan" });
+    }
+    res.json({ message: "Booking berhasil dihapus" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
